@@ -8,6 +8,7 @@ describe('Park', function() {
     park = new Park('Jurassic Park', 100, []);
     dino1 = ('t-rex', 'carnivore', 50);
     dino2 = ('velociraptor', 'carnivore', 60);
+    dino3 = ('velociraptor', 'carnivore', 30);
   })
 
   it('should have a name', function () {
@@ -32,17 +33,35 @@ describe('Park', function() {
   });
 
   it('should be able to remove a dinosaur from its collection', function () {
-    park.addDino(dino1)
-    park.addDino(dino2)
-    park.removeDino(dino1)
+    park.addDino(dino1);
+    park.addDino(dino2);
+    park.removeDino(dino1);
     const actual = park.numberOfDino();
     assert.deepStrictEqual(actual, 1);
   });
 
-  xit('should be able to find the dinosaur that attracts the most visitors');
+  xit('should be able to find the dinosaur that attracts the most visitors', function () {
+    park.addDino(dino1);
+    park.addDino(dino2);
+    const actual = park.mostVisited();
+    assert.deepStrictEqual(actual, dino2);
+  });
 
-  xit('should be able to find all dinosaurs of a particular species');
+  it('should be able to find all dinosaurs of a particular species', function () {
+    park.addDino(dino1);
+    park.addDino(dino2);
+    park.addDino(dino3);
+    const actual = park.findBySpecies('velociraptor');
+    assert.deepStrictEqual(actual, 2);
+  });
 
-  xit('should be able to remove all dinosaurs of a particular species');
+  it('should be able to remove all dinosaurs of a particular species', function () {
+    park.addDino(dino1);
+    park.addDino(dino2);
+    park.addDino(dino3);
+    park.removeDino(dino1);
+    const actual = park.removeBySpecies();
+    asert.deepStrictEqual(actual, 2);
+  });
 
 });
